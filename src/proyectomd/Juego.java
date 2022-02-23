@@ -138,7 +138,7 @@ public class Juego {
 
         }
 
-        if(intento >6){
+        if(!win){
             salto();
             fechaHoraWin = dtWin.format(LocalDateTime.now()).toString();
             
@@ -170,9 +170,9 @@ public class Juego {
                     ok = -1;	
             }else{
                 for(int i=0; i<N_CARACTER;i++){
-                if(!Character.isLetter(pal.charAt(i))){
-                    ok =-2;
-                }
+                    if(!Character.isLetter(pal.charAt(i))){
+                        ok =-2;
+                    }
                 }
             }
 
