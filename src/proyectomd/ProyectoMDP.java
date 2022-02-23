@@ -31,8 +31,8 @@ public class ProyectoMDP {
                 
                 opcion = menu();
 
-            if((opcion >= 5) && (opcion<1)){
-                Juego.escribirConColor(Juego.ANSI_RED_BACKGROUND + Juego.ANSI_WHITE, "¡¡ INGRESE UNA OPCIÓN CORRECTA !!");
+            if((opcion > 5) || (opcion<1)){
+                Juego.escribirConColor(Juego.ANSI_BOLD + Juego.ANSI_RED, "¡¡ INGRESE UNA OPCIÓN CORRECTA !!");
                 System.out.print("\n");
                 Juego.pausa();
             }else{
@@ -78,7 +78,7 @@ public class ProyectoMDP {
 
     public static void mostrarHistorial(){
         JSONPartida.leerJSON();
-        Juego.escribirConColor(Juego.ANSI_RED, "\t\t\tHISTORIAL DE PARTIDAS\t\t\t\n\n");;
+        Juego.escribirConColor(Juego.ANSI_BOLD + Juego.ANSI_RED, "\t\t\tHISTORIAL DE PARTIDAS\t\t\t\n\n");;
         for (int i = 0; i < JSONPartida.parts.size(); i++) {
             Juego.escribirConColor(Juego.ANSI_BLUE ," Fecha y Hora: ");
             System.out.println(JSONPartida.parts.get(i).getFechaHora());
@@ -99,7 +99,7 @@ public class ProyectoMDP {
     }
 public static int menu(){
     int opcion = 0;
-    Juego.escribirConColor(Juego.ANSI_RED, "\t\t\tWORDLE (ES)\t\t\t\n\n");;
+    Juego.escribirConColor(Juego.ANSI_BOLD + Juego.ANSI_RED, "\t\t\tWORDLE (ES)\t\t\t\n\n");;
              System.out.println("1. Ver resultados anteriores");
              System.out.println("2. Jugar");
              System.out.println("3. Actualizar lista de Palabras y Fechas");

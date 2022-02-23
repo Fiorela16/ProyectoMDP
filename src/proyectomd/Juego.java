@@ -16,7 +16,9 @@ import java.util.Scanner;
  * @author fiore
  */
 public class Juego {
+    public static final String ANSI_CLEAN = "\u001B[2J";
     public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BOLD = "\u001B[1m";
     //Colores de letra
     public static final String ANSI_BLACK = "\u001B[30m";
     public static final String ANSI_RED = "\u001B[31m";
@@ -116,41 +118,43 @@ public class Juego {
                     if(palabra.compareToIgnoreCase(palabraBuscada)==0){
                         salto();
                         fechaHoraWin = dtWin.format(LocalDateTime.now()).toString();
-                        escribirConColor(ANSI_RED, "\t\tWORDLE (ES)\n");
+                        escribirConColor(ANSI_BOLD + ANSI_RED, "\t\tWORDLE (ES)\n");
                         escribirConColor(ANSI_PURPLE," N° Intentos Usados:  " + intento + " \n");
                         frameJuego();            
                         System.out.print("\n\n\t");
-                        escribirConColor(ANSI_RED, "\t¡¡ LO LOGRASTE !!\t\n\n");	
+                        escribirConColor(ANSI_BOLD + ANSI_RED, "\t¡¡ LO LOGRASTE !!\t\n\n");	
                             win=true;		
                     }
                     pausa();
             }else{
                 if(error ==-1){
-                    escribirConColor(ANSI_RED, "INGRESE UNA CADENA DE TEXTO COMPUESTA POR 5 CARACTERES\n\n");
+                    escribirConColor(ANSI_BOLD + ANSI_RED, "INGRESE UNA CADENA DE TEXTO COMPUESTA POR 5 CARACTERES\n\n");
                     pausa();
                 }else{
-                    escribirConColor(ANSI_RED, "SOLO SE PERMITE INGRESAR LETRAS , ESTAS DEBEN SER SI TILDE\n\n");
+                    escribirConColor(ANSI_BOLD + ANSI_RED, "SOLO SE PERMITE INGRESAR LETRAS , ESTAS DEBEN SER SI TILDE\n\n");
                     pausa();
                 }
             }
 
         }
 
-        if(intento >=6){
-            fechaHoraWin = dtWin.format(LocalDateTime.now()).toString();
+        if(intento >6){
             salto();
-            escribirConColor(ANSI_RED ,"\t\tWORDLE (ES) \n");
+            fechaHoraWin = dtWin.format(LocalDateTime.now()).toString();
+            
+            escribirConColor(ANSI_BOLD +  ANSI_RED ,"\t\tWORDLE (ES) \n");
             escribirConColor(ANSI_PURPLE," PALABRA NO ENCONTRADA:  " + palabraBuscada + " \n");
             frameJuego();          
             System.out.print("\n\n\t");
             escribirConColor(ANSI_RED, "\tFALLASTE :C\t\n\n");	
+            pausa();
         }
 
         guardarPartida();
 
     }
     public static void salto(){
-        for (int i = 0; i < 50; ++i) System.out.println();
+            System.out.print(ANSI_CLEAN);        
     }
 
     public static void pausa(){
@@ -245,7 +249,7 @@ public class Juego {
 
     }
     public String buscaColorLetra(char car){
-            String colorBusc = ANSI_CYAN_BACKGROUND + ANSI_BLACK;
+            String colorBusc = ANSI_BLACK_BACKGROUND + ANSI_WHITE;
             boolean esVerde=false;
             for(int i=0;i<intento; i++){
                     for( int j=0;j<N_CARACTER; j++){
